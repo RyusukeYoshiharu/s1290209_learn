@@ -11,7 +11,6 @@ class HeatMapItemsFrequencies:
         frequencies = []
 
         for item, frequency in self.items_frequencies_dict.items():
-            # itemの情報を取得（仮定：itemは緯度・経度のタプル (latitude, longitude) とする）
             latitude, longitude = item
             latitudes.append(latitude)
             longitudes.append(longitude)
@@ -33,14 +32,17 @@ class HeatMapItemsFrequencies:
         fig.show()
 
 if __name__ == "__main__":
-    # テスト用のitemsFrequenciesDictionaryデータ（仮定：緯度・経度のタプルをキーとして頻度を値とする辞書）
-    items_frequencies_dict = {
-        (35.6895, 139.6917): 100,  # 東京の緯度経度と頻度
-        (40.7128, -74.0060): 80,   # ニューヨークの緯度経度と頻度
-        # 他の緯度経度と頻度のデータが続く
-    }
+    from frequenciesOfItems import FrequenciesOfItems
+
+    # トランザクションデータベースファイル名とセパレータを指定
+    transactional_database = "transactional_database.txt"
+    separator = "\t"
+
+    # FrequenciesOfItemsのインスタンスを生成し、頻度の辞書を取得
+    items_frequencies = FrequenciesOfItems(transactional_database, separator)
+    items_freq_dictionary = items_frequencies.getFrequencies()
 
     # HeatMapItemsFrequenciesのインスタンスを生成し、ヒートマップをプロット
-    heat_map = HeatMapItemsFrequencies(items_frequencies_dict)
+    heat_map = HeatMapItemsFrequencies(items_freq_dictionary)
     heat_map.plotHeatMap()
 
