@@ -17,16 +17,3 @@ class FrequenciesOfItems:
                         item_freq_dict[item] = 1
 
         return item_freq_dict
-
-if __name__ == "__main__":
-    # テスト用データベースファイル名とセパレータを指定
-    transactional_database = "transactional_database.txt"
-    separator = "\t"
-
-    # FrequenciesOfItemsのインスタンスを生成し、頻度の辞書を取得
-    items_frequencies = FrequenciesOfItems(transactional_database, separator)
-    items_freq_dictionary = items_frequencies.getFrequencies()
-
-    # 頻度の辞書を出力
-    print(items_freq_dictionary)
-
